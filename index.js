@@ -35,11 +35,11 @@ function adjustCanvasSize() {
 function draw() {
   background(color(0, 0, 0));
   geneticAlgorithm.draw();
-  details.html(`current maximum score: ${geneticAlgorithm.maxGame()}<br />
-  generation count: ${geneticAlgorithm.generation_count}<br />
-  maximum score: ${geneticAlgorithm.bestAllTime}<br />
-  population count: ${geneticAlgorithm.population.length}<br />
-  population max: ${POPULATION_MAX}`);
+  details.html(`Current Maximum Score: ${geneticAlgorithm.maxGame()}<br />
+  Generation Count: ${geneticAlgorithm.generation_count}<br />
+  Maximum Score: ${geneticAlgorithm.bestAllTime}<br />
+  Population Count: ${geneticAlgorithm.population.length}<br />
+  Population Max: ${POPULATION_MAX}`);
 }
 
 function handle_keyboard() {

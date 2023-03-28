@@ -1,4 +1,4 @@
-const POPULATION_MAX = 100;
+const POPULATION_MAX = 150;
 
 class GeneticAlgorithm {
   constructor() {
