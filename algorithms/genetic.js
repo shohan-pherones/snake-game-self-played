@@ -64,4 +64,26 @@ class GeneticAlgorithm {
 
     return this.save[index - 1];
   }
+
+  newGeneration() {
+    let newPop = [];
+    this.generation_count++;
+
+    let max_fitness = Math.max.apply(
+      Math,
+      this.save.map((game) => game.fitness)
+    );
+    let parent = this.save.find((game) => game.fitness == max_fitness);
+
+    for (let i = 0; i < POPULATION_MAX; i++) {
+      newPop.push(parent.copy());
+    }
+
+    for (let i = 0; i < POPULATION_MAX; i++) {
+      this.save[i].dispose();
+    }
+
+    this.population = newPop;
+    this.save = [];
+  }
 }
