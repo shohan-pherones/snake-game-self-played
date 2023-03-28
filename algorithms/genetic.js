@@ -52,4 +52,16 @@ class GeneticAlgorithm {
 
     return max;
   }
+
+  selection(sumFitness) {
+    let rand = random();
+    let index = 0;
+
+    while (rand > 0 && index < this.save.length) {
+      rand -= (this.fitness(this.save[index]) / sumFitness) * 10;
+      index++;
+    }
+
+    return this.save[index - 1];
+  }
 }
