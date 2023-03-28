@@ -324,4 +324,46 @@ class Snake {
       this.fitness_score -= 1.5;
     }
   }
+
+  turnRight() {
+    switch (this.direction) {
+      case UP:
+        this.moveRight();
+
+        break;
+      case RIGHT:
+        this.moveDown();
+
+        break;
+      case DOWN:
+        this.moveLeft();
+
+        break;
+      case LEFT:
+        this.moveUp();
+
+        break;
+    }
+  }
+
+  turnLeft() {
+    switch (this.direction) {
+      case UP:
+        this.moveLeft();
+
+        break;
+      case RIGHT:
+        this.moveUp();
+
+        break;
+      case DOWN:
+        this.moveRight();
+
+        break;
+      case LEFT:
+        this.moveDown();
+
+        break;
+    }
+  }
 }
