@@ -366,4 +366,96 @@ class Snake {
         break;
     }
   }
+
+  copy() {
+    return new Snake(BLOCK_SIZE, this.brain.copy());
+  }
+
+  graw() {
+    this.score++;
+    this.fitness_score += 3;
+
+    switch (this.direction) {
+      case UP:
+        this.body.push(
+          new SnakeCell(
+            this.head.col,
+            this.head.row + 1,
+            this.head.size,
+            this.color
+          )
+        );
+
+        break;
+      case DOWN:
+        this.body.push(
+          new SnakeCell(
+            this.head.col,
+            this.head.row - 1,
+            this.head.size,
+            this.color
+          )
+        );
+
+        break;
+      case LEFT:
+        this.body.push(
+          new SnakeCell(
+            this.head.col + 1,
+            this.head.row,
+            this.head.size,
+            this.color
+          )
+        );
+
+        break;
+      case RIGHT:
+        this.body.push(
+          new SnakeCell(
+            this.head.col - 1,
+            this.head.row,
+            this.head.size,
+            this.color
+          )
+        );
+
+        break;
+    }
+
+    this.hunger = this.canvasDiagonal() * 3 + (this.body.length + 1);
+  }
+
+  headOnBody() {
+    return this.body.find((cell) => cell.equals(this.head)) != undefined;
+  }
+
+  appleOnHead(apple) {
+    return this.head.col == apple.col && this.head.row == apple.row;
+  }
+
+  appleOnBody(apple) {
+    return (
+      this.body.find(
+        (cell) => cell.col == apple.col && cell.row == apple.row
+      ) != undefined
+    );
+  }
+
+  checkEnd() {
+    return (
+      this.head.col * this.head.size <= -1 * this.head.size ||
+      this.head.col * this.head.size >= canvas_width ||
+      this.head.row * this.head.size <= -1 * this.head.size ||
+      this.head.row * this.head.size >= canvas_height ||
+      this.headOnBody() ||
+      this.hunger <= 0
+    );
+  }
+
+  draw() {
+    this.hunger--;
+    this.age++;
+    this.head.draw();
+    this.body.forEach((cell) => cell.draw());
+  }
 }
