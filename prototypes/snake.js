@@ -166,4 +166,40 @@ class Snake {
   pitagoras_third_vertex(a, b) {
     return Math.sqrt(a * a + b * b);
   }
+
+  checkFreeInfront() {
+    switch (this.direction) {
+      case UP:
+        return this.head.row - 1 < 0 ||
+          this.body.find(
+            (cell) => cell.col == this.head.col && cell.row == this.head.row - 1
+          ) != undefined
+          ? 1
+          : 0;
+
+      case RIGHT:
+        return this.head.col + 1 >= canvas_width / BLOCK_SIZE ||
+          this.body.find(
+            (cell) => cell.col == this.head.col + 1 && cell.row == this.head.row
+          ) != undefined
+          ? 1
+          : 0;
+
+      case DOWN:
+        return this.head.row + 1 >= canvas_height / BLOCK_SIZE ||
+          this.body.find(
+            (cell) => cell.col == this.head.col && cell.row == this.head.row + 1
+          ) != undefined
+          ? 1
+          : 0;
+
+      case LEFT:
+        return this.head.col - 1 < 0 ||
+          this.body.find(
+            (cell) => cell.col == this.head.col - 1 && cell.row == this.head.row
+          ) != undefined
+          ? 1
+          : 0;
+    }
+  }
 }
