@@ -1,0 +1,5 @@
+{
+  "dir": "/libraries",
+  "name": "p5",
+  "casting": [{ "extend": "p5.sound" }, { "extend": "p5.dom" }]
+}
