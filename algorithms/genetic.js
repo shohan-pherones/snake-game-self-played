@@ -16,4 +16,40 @@ class GeneticAlgorithm {
       this.population.push(new GameManager());
     }
   }
+
+  maxHunger() {
+    let max = 0;
+
+    for (let i = 0; i < this.save.length; i++) {
+      if (max < this.save[i].hunger()) {
+        max = this.save[i].hunger();
+      }
+    }
+
+    return max;
+  }
+
+  draw() {
+    if (this.population.length == 0) {
+      this.newGeneration();
+    }
+
+    this.population.forEach((game) => game.draw(this.save, this.population));
+  }
+
+  maxGame() {
+    let max = 0;
+
+    for (let i = 0; i < this.population.length; i++) {
+      if (max < this.population[i].score()) {
+        max = this.population[i].score();
+      }
+    }
+
+    if (this.bestAllTime < max) {
+      this.bestAllTime = max;
+    }
+
+    return max;
+  }
 }
