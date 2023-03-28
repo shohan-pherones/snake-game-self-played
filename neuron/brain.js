@@ -15,6 +15,7 @@ class Brain {
     this.model.dispose();
   }
 
+  // Mutating the weights of a neural network model in a genetic algorithm with a given mutation rate and a random Gaussian function.
   mutate() {
     tf.tidy(() => {
       const weights = this.model.getWeights();
@@ -40,6 +41,7 @@ class Brain {
     });
   }
 
+  // Copying weights to the new model, mutates the copied model, and returns a new brain object with the mutated copied model.
   copy() {
     return tf.tidy(() => {
       const modelCopy = this.createModel();
@@ -58,6 +60,7 @@ class Brain {
     });
   }
 
+  // Predicting the output using a neural network model, gets the output values, and returns the predicted outputs.
   predict(inputs) {
     return tf.tidy(() => {
       const tensor2d = tf.tensor2d([inputs]);
@@ -68,6 +71,7 @@ class Brain {
     });
   }
 
+  // Creating a sequential model with a hidden layer of sigmoid activation and an output layer of sigmoid activation.
   createModel() {
     const model = tf.sequential();
     const hidden = tf.layers.dense({

@@ -33,6 +33,7 @@ class GameManager {
     return this.snake.hunger;
   }
 
+  // Calculating the fitness score of a snake in a genetic algorithm based on its age, fitness score, and body length.
   calc_fitness() {
     let lifetime = this.snake.age + this.snake.fitness_score;
     let len = this.snake.body.length;
@@ -48,6 +49,7 @@ class GameManager {
     }
   }
 
+  // Drawing the game elements, checks if the game has ended, and calculates the fitness score for the individual.
   draw(save, population) {
     if (!this.snake.checkEnd()) {
       this.snake.think(this.apple);

@@ -73,6 +73,7 @@ class Snake {
     );
   }
 
+  // Calculating the diagonal length of the canvas in terms of blocks.
   canvasDiagonal() {
     return Math.abs(
       Math.sqrt(
@@ -82,6 +83,7 @@ class Snake {
     );
   }
 
+  // Neural network snake's decision-making function based on input features.
   think(apple) {
     let input = [
       this.checkFreeRight(),
@@ -95,6 +97,7 @@ class Snake {
     this.choice(output, apple);
   }
 
+  // Calculate the relative direction of the apple from the snake's head.
   appleDagree(apple) {
     if (this.decision == UP || this.decision == DOWN) {
       if (this.head.row == apple.row) {
@@ -126,6 +129,7 @@ class Snake {
     );
   }
 
+  // Function to determine the direction the snake should turn based on the location of the apple relative to its head.
   decision(apple) {
     switch (this.direction) {
       case UP:
@@ -163,10 +167,12 @@ class Snake {
     }
   }
 
+  // Calculates the length of the hypotenuse of a right triangle given the lengths of the other two sides using the Pythagorean theorem.
   pitagoras_third_vertex(a, b) {
     return Math.sqrt(a * a + b * b);
   }
 
+  // Checks if there is a free space in front of the snake, returning 1 if there isn't and 0 if there is.
   checkFreeInfront() {
     switch (this.direction) {
       case UP:
@@ -203,6 +209,7 @@ class Snake {
     }
   }
 
+  // Check if there is a free cell on the left of the snake's head.
   checkFreeLeft() {
     switch (this.direction) {
       case UP:
@@ -239,6 +246,7 @@ class Snake {
     }
   }
 
+  // This function checks if there is a free space to the right of the snake's head based on its direction.
   checkFreeRight() {
     switch (this.direction) {
       case UP:
@@ -275,6 +283,7 @@ class Snake {
     }
   }
 
+  // Chooses the highest output value from the neural network and performs the corresponding action. Also updates the apple score.
   choice(output, apple) {
     let max = output[0];
     let indexMax = 0;
@@ -441,6 +450,7 @@ class Snake {
     );
   }
 
+  // Check if the snake has reached the end of the game, either by hitting the wall, its own body, or by running out of hunger.
   checkEnd() {
     return (
       this.head.col * this.head.size <= -1 * this.head.size ||
