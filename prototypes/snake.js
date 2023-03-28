@@ -274,4 +274,54 @@ class Snake {
           : 0;
     }
   }
+
+  choice(output, apple) {
+    let max = output[0];
+    let indexMax = 0;
+
+    for (let i = 0; i < output.length; i++) {
+      if (max < output[i]) {
+        max = output[i];
+        indexMax = i;
+      }
+    }
+
+    let oldCol = this.head.col;
+    let oldRow = this.head.row;
+
+    switch (indexMax) {
+      case TURN_RIGHT:
+        this.turnRight();
+
+        break;
+      case TURN_LEFT:
+        this.turnLeft();
+
+        break;
+      case DEFUALT:
+        this.moveDefault();
+
+        break;
+    }
+
+    this.appleScore(oldCol, oldRow, apple);
+  }
+
+  appleDistance(apple) {
+    return this.pitagoras_third_vertex(
+      this.head.col - apple.col,
+      this.head.row - apple.row
+    );
+  }
+
+  appleScore(oldCol, oldRow, apple) {
+    if (
+      this.appleDistance(apple) <
+      this.pitagoras_third_vertex(oldCol - apple.col, oldRow - apple.row)
+    ) {
+      this.fitness_score += 1;
+    } else {
+      this.fitness_score -= 1.5;
+    }
+  }
 }
