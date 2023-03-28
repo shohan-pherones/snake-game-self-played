@@ -458,4 +458,59 @@ class Snake {
     this.head.draw();
     this.body.forEach((cell) => cell.draw());
   }
+
+  moveLeft() {
+    this.direction = LEFT;
+    this.moveCells();
+    this.head.changeCol(this.head.col - 1);
+  }
+
+  moveRight() {
+    this.direction = RIGHT;
+    this.moveCells();
+    this.head.changeCol(this.head.col + 1);
+  }
+
+  moveUp() {
+    this.direction = UP;
+    this.moveCells();
+    this.head.changeRow(this.head.row - 1);
+  }
+
+  moveDown() {
+    this.direction = DOWN;
+    this.moveCells();
+    this.head.changeRow(this.head.row + 1);
+  }
+
+  moveDefault() {
+    switch (this.direction) {
+      case UP:
+        this.moveUp();
+
+        break;
+      case DOWN:
+        this.moveDown();
+
+        break;
+      case LEFT:
+        this.moveLeft();
+
+        break;
+      case RIGHT:
+        this.moveRight();
+
+        break;
+    }
+  }
+
+  moveCells() {
+    if (this.body.length > 1) {
+      for (let i = this.body.length - 1; i > 0; i--) {
+        this.body[i].duplicateProp(this.body[i - 1]);
+      }
+
+      this.body[0].duplicateProp(this.head);
+    }
+  }
 }
