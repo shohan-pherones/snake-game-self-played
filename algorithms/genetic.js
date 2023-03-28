@@ -1,4 +1,4 @@
-const POPULATION_MAX = 150;
+const POPULATION_MAX = 100;
 
 class GeneticAlgorithm {
   constructor() {
@@ -17,6 +17,7 @@ class GeneticAlgorithm {
     }
   }
 
+  // Iterating through the saved individuals and returns the highest hunger value among them.
   maxHunger() {
     let max = 0;
 
@@ -29,6 +30,7 @@ class GeneticAlgorithm {
     return max;
   }
 
+  // Displaying the current population of individuals and generates a new population if the current population is empty.
   draw() {
     if (this.population.length == 0) {
       this.newGeneration();
@@ -37,6 +39,7 @@ class GeneticAlgorithm {
     this.population.forEach((game) => game.draw(this.save, this.population));
   }
 
+  // Iterating through the current population and returns the highest score achieved by an individual. It also updates the best score of all time, if applicable.
   maxGame() {
     let max = 0;
 
@@ -53,6 +56,7 @@ class GeneticAlgorithm {
     return max;
   }
 
+  // Implementing a fitness-proportional selection mechanism for a genetic algorithm by randomly selecting a fitness value and iterating through the population until the selected fitness value falls below zero.
   selection(sumFitness) {
     let rand = random();
     let index = 0;
@@ -65,6 +69,7 @@ class GeneticAlgorithm {
     return this.save[index - 1];
   }
 
+  // Generating a new population for a genetic algorithm by cloning the fittest individual as the parent and disposing of the previous population.
   newGeneration() {
     let newPop = [];
     this.generation_count++;
